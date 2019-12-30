@@ -8,10 +8,3 @@ This API utilizes Swagger to generate endpoint API documentation. With the API r
 ## Notes
 * Following [ASP.NET Core + EF Core Web API](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio-code) tutorial for the initial implementation of the backend.
 * Adding Swashbuckle (and Swagger) via this [tutorial](https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.0&tabs=visual-studio-code).
-
-## TODO
-* [Call API from Javascript](https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-3.0).
-* Call API from web client application
-  * Create mobile and desktop web front ends
-* Call API from mobile client application
-* Call API from Desktop application
