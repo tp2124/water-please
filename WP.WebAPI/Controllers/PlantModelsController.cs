@@ -34,7 +34,7 @@ namespace WP.WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<PlantModel>> GetPlantModel(long id)
         {
-            var PlantModel = await _context.PlantModels.FindAsync(id);
+            PlantModel PlantModel = await _context.PlantModels.FindAsync(id);
 
             if (PlantModel == null)
             {
@@ -48,14 +48,14 @@ namespace WP.WebAPI.Controllers
         #region snippet_Update
         // PUT: api/PlantModels/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPlantModel(long id, PlantModel PlantModel)
+        public async Task<IActionResult> PutPlantModel(long id, PlantModel plantModel)
         {
-            if (id != PlantModel.Id)
+            if (id != plantModel.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(PlantModel).State = EntityState.Modified;
+            _context.Entry(plantModel).State = EntityState.Modified;
 
             try
             {
@@ -80,13 +80,13 @@ namespace WP.WebAPI.Controllers
         #region snippet_Create
         // POST: api/PlantModels
         [HttpPost]
-        public async Task<ActionResult<PlantModel>> PostPlantModel(PlantModel PlantModel)
+        public async Task<ActionResult<PlantModel>> PostPlantModel(PlantModel plantModel)
         {
-            _context.PlantModels.Add(PlantModel);
+            _context.PlantModels.Add(plantModel);
             await _context.SaveChangesAsync();
 
-            //return CreatedAtAction("GetPlantModel", new { id = PlantModel.Id }, PlantModel);
-            return CreatedAtAction(nameof(GetPlantModel), new { id = PlantModel.Id }, PlantModel);
+            //return CreatedAtAction("GetPlantModel", new { id = plantModel.Id }, plantModel);
+            return CreatedAtAction(nameof(GetPlantModel), new { id = plantModel.Id }, plantModel);
         }
         #endregion
 
@@ -95,16 +95,16 @@ namespace WP.WebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<PlantModel>> DeletePlantModel(long id)
         {
-            var PlantModel = await _context.PlantModels.FindAsync(id);
-            if (PlantModel == null)
+            PlantModel plantModel = await _context.PlantModels.FindAsync(id);
+            if (plantModel == null)
             {
                 return NotFound();
             }
 
-            _context.PlantModels.Remove(PlantModel);
+            _context.PlantModels.Remove(plantModel);
             await _context.SaveChangesAsync();
 
-            return PlantModel;
+            return plantModel;
         }
         #endregion
 
