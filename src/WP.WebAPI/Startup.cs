@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using WP.WebAPI.Models;
+using WP.WebAPI.Services;
 
 namespace WP.WebAPI
 {
@@ -29,6 +30,7 @@ namespace WP.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<WPContext>(opt => opt.UseInMemoryDatabase("WaterPleaseData"));
+            services.AddScoped<IPlantsService, PlantService>();
             services.AddControllers();
             
             // Register the Swagger generator, defining 1 or more Swagger documents
