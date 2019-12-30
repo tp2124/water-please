@@ -4930,7 +4930,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
-      "Microsoft.EntityFrameworkCore.InMemory",
+      "Microsoft.EntityFrameworkCore.InMemory >= 3.1.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.0"
     ]
   },
@@ -4975,7 +4975,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.InMemory": {
             "target": "Package",
-            "version": "(, )"
+            "version": "[3.1.0, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
