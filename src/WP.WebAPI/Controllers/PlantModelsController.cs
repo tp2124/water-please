@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WP.WebAPI.Models;
+using WP.WebAPI.Services;
 
 namespace WP.WebAPI.Controllers
 {
@@ -14,10 +15,13 @@ namespace WP.WebAPI.Controllers
     [ApiController]
     public class PlantModelsController : ControllerBase
     {
+        private readonly IPlantsService _plantService;
+        // Issue #10 Remove this context once functionality is 100% abstracted into the plants service.
         private readonly WPContext _context;
 
-        public PlantModelsController(WPContext context)
+        public PlantModelsController(WPContext context, IPlantsService plantService)
         {
+            _plantService = plantService;
             _context = context;
         }
         #endregion
@@ -27,6 +31,7 @@ namespace WP.WebAPI.Controllers
         public async Task<ActionResult<IEnumerable<PlantModel>>> GetPlantModels()
         {
             return await _context.PlantModels.ToListAsync();
+            // return await new Task<ActionResult<IEnumerable<PlantModel>>>(() => new ActionResult<IEnumerable<PlantModel>>(_plantService.GetPlants()));
         }
 
         #region snippet_GetByID
