@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/travisprimm/code/github/water-please/water-please-server/WP.WebAPI/WP.WebAPI.csproj": {}
+    "/Users/travisprimm/code/github/water-please/water-please-server/src/WP.WebAPI/WP.WebAPI.csproj": {}
   },
   "projects": {
-    "/Users/travisprimm/code/github/water-please/water-please-server/WP.WebAPI/WP.WebAPI.csproj": {
+    "/Users/travisprimm/code/github/water-please/water-please-server/src/WP.WebAPI/WP.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/travisprimm/code/github/water-please/water-please-server/WP.WebAPI/WP.WebAPI.csproj",
+        "projectUniqueName": "/Users/travisprimm/code/github/water-please/water-please-server/src/WP.WebAPI/WP.WebAPI.csproj",
         "projectName": "WP.WebAPI",
-        "projectPath": "/Users/travisprimm/code/github/water-please/water-please-server/WP.WebAPI/WP.WebAPI.csproj",
+        "projectPath": "/Users/travisprimm/code/github/water-please/water-please-server/src/WP.WebAPI/WP.WebAPI.csproj",
         "packagesPath": "/Users/travisprimm/.nuget/packages/",
-        "outputPath": "/Users/travisprimm/code/github/water-please/water-please-server/WP.WebAPI/obj/",
+        "outputPath": "/Users/travisprimm/code/github/water-please/water-please-server/src/WP.WebAPI/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -55,7 +55,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.0, )"
+              "version": "[3.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
