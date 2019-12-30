@@ -1,6 +1,6 @@
 using System;
 
-namespace wp_webapi
+namespace WP.WebAPI
 {
     public class WeatherForecast
     {
