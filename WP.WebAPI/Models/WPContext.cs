@@ -5,7 +5,7 @@ namespace WP.WebAPI.Models {
         public WPContext(DbContextOptions<WPContext> options)
             : base(options) {
         }
-        
+
         public DbSet<PlantModel> PlantModels { get; set;}
     }
 }
