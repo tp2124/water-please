@@ -3,14 +3,15 @@ using System.Threading.Tasks;
 
 using WP.WebAPI.Models;
 
-
 namespace WP.WebAPI.Services {
     public interface IPlantsService {
+        Task<List<PlantModel>> GetPlantsAsync();
         IEnumerable<PlantModel> GetPlants();
+        Task<PlantModel> GetPlantAsync(long plantId);
         PlantModel GetPlant(long plantId);
-        bool EditPlant(long plantId, PlantModel plantModel);
-        PlantModel AddPlant(PlantModel plantModel);
-        PlantModel DeletePlant(PlantModel plantModel);
+        Task<bool> EditPlantAsync(PlantModel plantModel);
+        Task<PlantModel> AddPlantAsync(PlantModel plantModel);
+        Task<PlantModel> DeletePlantAsync(long id);
         bool PlantExists(long id);
 
     }

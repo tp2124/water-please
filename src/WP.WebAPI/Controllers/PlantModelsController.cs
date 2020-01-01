@@ -16,13 +16,10 @@ namespace WP.WebAPI.Controllers
     public class PlantModelsController : ControllerBase
     {
         private readonly IPlantsService _plantService;
-        // Issue #10 Remove this context once functionality is 100% abstracted into the plants service.
-        private readonly WPContext _context;
 
-        public PlantModelsController(WPContext context, IPlantsService plantService)
+        public PlantModelsController(IPlantsService plantService)
         {
             _plantService = plantService;
-            _context = context;
         }
         #endregion
 
@@ -30,16 +27,15 @@ namespace WP.WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PlantModel>>> GetPlantModels()
         {
-            return await _context.PlantModels.ToListAsync();
-            // return await new Task<ActionResult<IEnumerable<PlantModel>>>(() => new ActionResult<IEnumerable<PlantModel>>(_plantService.GetPlants()));
+            return await _plantService.GetPlantsAsync();
         }
 
-        #region snippet_GetByID
+        #region GetByID
         // GET: api/PlantModels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<PlantModel>> GetPlantModel(long id)
         {
-            PlantModel PlantModel = await _context.PlantModels.FindAsync(id);
+            PlantModel PlantModel = await _plantService.GetPlantAsync(id);
 
             if (PlantModel == null)
             {
@@ -50,7 +46,7 @@ namespace WP.WebAPI.Controllers
         }
         #endregion
 
-        #region snippet_Update
+        #region Update
         // PUT: api/PlantModels/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPlantModel(long id, PlantModel plantModel)
@@ -60,21 +56,9 @@ namespace WP.WebAPI.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(plantModel).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PlantModelExists(id))
-                {
+            if (!await _plantService.EditPlantAsync(plantModel)) {
+                if (!_plantService.PlantExists(id)) {
                     return NotFound();
-                }
-                else
-                {
-                    throw;
                 }
             }
 
@@ -82,40 +66,28 @@ namespace WP.WebAPI.Controllers
         }
         #endregion
 
-        #region snippet_Create
+        #region Create
         // POST: api/PlantModels
         [HttpPost]
         public async Task<ActionResult<PlantModel>> PostPlantModel(PlantModel plantModel)
         {
-            _context.PlantModels.Add(plantModel);
-            await _context.SaveChangesAsync();
-
-            //return CreatedAtAction("GetPlantModel", new { id = plantModel.Id }, plantModel);
+            await _plantService.AddPlantAsync(plantModel);
             return CreatedAtAction(nameof(GetPlantModel), new { id = plantModel.Id }, plantModel);
         }
         #endregion
 
-        #region snippet_Delete
+        #region Delete
         // DELETE: api/PlantModels/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<PlantModel>> DeletePlantModel(long id)
         {
-            PlantModel plantModel = await _context.PlantModels.FindAsync(id);
-            if (plantModel == null)
-            {
+            PlantModel deletedPlant = await _plantService.DeletePlantAsync(id);
+            if (deletedPlant == null) {
                 return NotFound();
             }
 
-            _context.PlantModels.Remove(plantModel);
-            await _context.SaveChangesAsync();
-
-            return plantModel;
+            return deletedPlant;
         }
         #endregion
-
-        private bool PlantModelExists(long id)
-        {
-            return _context.PlantModels.Any(e => e.Id == id);
-        }
     }
 }
