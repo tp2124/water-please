@@ -23,53 +23,52 @@ namespace WP.WebAPI.Services {
 
 
         # region IPlantService Interface
+        public async Task<List<PlantModel>> GetPlantsAsync() {
+            return await _context.PlantModels.ToListAsync();
+        }
+
         public IEnumerable<PlantModel> GetPlants() {
             return _context.PlantModels.ToList();
         }
 
-        public async Task<IEnumerable<PlantModel>>GetPlantsAsync() {
-            return await _context.PlantModels.ToListAsync();
+        public Task<PlantModel> GetPlantAsync(long plantId) {
+            return _context.PlantModels.FindAsync(plantId).AsTask();
         }
 
         public PlantModel GetPlant(long plantId) {
             return _context.PlantModels.Find(plantId);
         }
 
-        public bool EditPlant(long plantId, PlantModel plantModel) {
-            // if (plantId != plantModel.Id)
-            // {
-            //     return false;
-            // }
-
-            // _context.Entry(plantModel).State = EntityState.Modified;
-
-            // try
-            // {
-            //     _context.SaveChangesAsync().Result;
-            // }
-            // catch (DbUpdateConcurrencyException)
-            // {
-            //     if (!PlantModelExists(plantId))
-            //     {
-            //         return false;
-            //     }
-            //     else
-            //     {
-            //         throw;
-            //     }
-            // }
+        public async Task<bool> EditPlantAsync(PlantModel plantModel) {
+            _context.Entry(plantModel).State = EntityState.Modified;
+            try {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException) {
+                return false;
+            }
+            
             return true;
         }
-        public PlantModel AddPlant(PlantModel plantModel) {
-            return null;
+        public async Task<PlantModel> AddPlantAsync(PlantModel plantModel) {
+            _context.PlantModels.Add(plantModel);
+            await _context.SaveChangesAsync();
+            return await GetPlantAsync(plantModel.Id);
         }
 
-        public PlantModel DeletePlant(PlantModel plantModel) {
-            return null;
+        public async Task<PlantModel> DeletePlantAsync(long plantModelId) {
+            PlantModel deletingPlant = await GetPlantAsync(plantModelId);
+            if (deletingPlant == null) {
+                return deletingPlant;
+            }
+
+            _context.PlantModels.Remove(deletingPlant);
+            await _context.SaveChangesAsync();
+            return deletingPlant;
         }
 
         public bool PlantExists(long id) {
-            return false;
+            return _context.PlantModels.Any(e => e.Id == id);
         }
         #endregion
     }

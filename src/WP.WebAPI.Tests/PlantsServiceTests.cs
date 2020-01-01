@@ -1,6 +1,7 @@
 using NUnit.Framework;
 
 using System.Linq;
+using System.Threading.Tasks;
 
 using WP.WebAPI.Controllers;
 using WP.WebAPI.Models;
@@ -15,10 +16,6 @@ namespace WP.WebAPI.Tests
         [SetUp]
         public void Setup()
         {
-            // Issue #10, Replace this with a service instead of a direct DB Context
-            // var dbOptions = new Microsoft.EntityFrameworkCore.DbContextOptions<WPContext>();
-            // WPContext context = new WPContext(dbOptions);
-            // _controller = new PlantModelsController(context);
             _service = new MockedPlantsService();
         }
 
@@ -33,7 +30,7 @@ namespace WP.WebAPI.Tests
         [Test]
         [TestCase(10, "NewPlant", "NewPlantOnTheBlockus")]
         public void AddPlant(long id, string friendlyName, string sciName) {
-            _service.AddPlant(new PlantModel() {
+            _service.AddPlantAsync(new PlantModel() {
                 Id = id, 
                 FriendlyName = friendlyName, 
                 ScientificName = sciName
