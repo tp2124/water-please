@@ -34,6 +34,13 @@ namespace WP.WebAPI.Services {
         }
 
         public async Task<bool> EditPlantAsync(PlantModel plantModel) {
+            PlantModel editingPlant = _plants.FirstOrDefault(p => p.Id == plantModel.Id);
+            if (editingPlant == null) {
+                return false;
+            }
+
+            editingPlant.FriendlyName = plantModel.FriendlyName;
+            editingPlant.ScientificName = plantModel.ScientificName;
             return true;
         }
 
