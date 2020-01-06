@@ -1,6 +1,13 @@
 # water-please-server
 Water Please is a service that will help to try and allow users to setup reminders about when to water their plants.
 
+<!-- <p align="center"> -->
+<p>
+  Master: <a href="https://github.com/tp2124/water-please-server"><img alt="CI Status" src="https://github.com/tp2124/water-please-server/workflows/.NET%20Core/badge.svg?branch=master"></a>
+  </br>
+  PR: <a href="https://github.com/tp2124/water-please-server"><img alt="CI Status" src="https://github.com/tp2124/water-please-server/workflows/.NET%20Core/badge.svg?event=pull_request"></a>
+</p>
+
 # Development Information
 ### Branch Layout
 ```
