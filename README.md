@@ -25,14 +25,14 @@ Deploys will be conducted via GitHub Actions.
 
 ### Package
 There will be a package that will allow for an easier interface for consuming applications.
-The `pre-release` package will be updated when a new commit goes into `stages/testing`. 
-The `release` package will be updated when a new commit goes into `stages/prod`.
+* The `pre-release` package will be updated when a new commit goes into `stages/testing`. 
+* The `release` package will be updated when a new commit goes into `stages/prod`.
 
 ### Service
 The webservice will be the endpoint for consuming applications to query from and push data to.
-The `development` webservice will be updated when a new commit goes into `stages/development`.
-The `testing` webservice will be updated when a new commit goes into `stages/testing`.
-The `prod` webservice will be updated when a new commit goes into `stages/prod`.
+* The `development` webservice will be updated when a new commit goes into `stages/development`.
+* The `testing` webservice will be updated when a new commit goes into `stages/testing`.
+* The `prod` webservice will be updated when a new commit goes into `stages/prod`.
 
 # Tech Documentation
 ## Tech Stack
